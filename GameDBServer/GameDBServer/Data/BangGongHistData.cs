@@ -7,91 +7,91 @@ using ProtoBuf;
 namespace Server.Data
 {
     /// <summary>
-    /// 帮会贡献项数据
+    /// Gang contribution data
     /// </summary>
     [ProtoContract]
     public class BangGongHistData
     {
         /// <summary>
-        /// 区ID
+        /// Area ID
         /// </summary>
         [ProtoMember(1)]
         public int ZoneID = 0;
 
         /// <summary>
-        /// 角色的ID
+        /// ID of the role
         /// </summary>
         [ProtoMember(2)]
         public int RoleID = 0;
 
         /// <summary>
-        /// 角色的名称
+        /// The name of the role
         /// </summary>
         [ProtoMember(3)]
         public string RoleName = "";
 
         /// <summary>
-        /// 角色的职业
+        /// The role of the profession
         /// </summary>
         [ProtoMember(4)]
         public int Occupation = 0;
 
         /// <summary>
-        /// 角色的级别
+        /// The level of the character
         /// </summary>
         [ProtoMember(5)]
         public int RoleLevel = 0;
 
         /// <summary>
-        /// 帮会职务
+        /// Gang post
         /// </summary>
         [ProtoMember(6)]
         public int BHZhiWu = 0;
 
         /// <summary>
-        /// 帮会称号
+        /// Gang title
         /// </summary>
         [ProtoMember(7)]
         public string BHChengHao = "";
 
         /// <summary>
-        /// 仓库道具1的数量
+        /// The number of warehouse props 1
         /// </summary>
         [ProtoMember(8)]
         public int Goods1Num = 0;
 
         /// <summary>
-        /// 仓库道具2的数量
+        /// The number of warehouse props 2
         /// </summary>
         [ProtoMember(9)]
         public int Goods2Num = 0;
 
         /// <summary>
-        /// 仓库道具3的数量
+        /// The number of warehouse props 3
         /// </summary>
         [ProtoMember(10)]
         public int Goods3Num = 0;
 
         /// <summary>
-        /// 仓库道具4的数量
+        /// The number of warehouse props 4
         /// </summary>
         [ProtoMember(11)]
         public int Goods4Num = 0;
 
         /// <summary>
-        /// 仓库道具5的数量
+        /// The number of warehouse props 5
         /// </summary>
         [ProtoMember(12)]
         public int Goods5Num = 0;
 
         /// <summary>
-        /// 仓库道具5的数量
+        /// The number of coins in the warehouse
         /// </summary>
         [ProtoMember(13)]
         public int TongQian = 0;
 
         /// <summary>
-        /// 角色的获取的帮贡
+        /// The role of the get help tribute
         /// </summary>
         [ProtoMember(14)]
         public int BangGong = 0;

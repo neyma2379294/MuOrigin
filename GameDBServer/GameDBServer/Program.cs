@@ -120,7 +120,7 @@ namespace GameDBServer
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
         }
 
-        #endregion 全局的未捕获的异常的处理
+        #endregion Global uncaught exception handling
 
         #region Start close the program when the file operation part
         /// <summary>
@@ -479,7 +479,7 @@ namespace GameDBServer
             }
         }
 
-        #endregion 命令功能
+        #endregion Command function
 
         #region External call interface
 
@@ -902,78 +902,78 @@ namespace GameDBServer
             }
         }
 
-        #region 线程部分
+        #region Thread part
 
         /// <summary>
-        /// 后台写日志线程
+        /// Background log threads
         /// </summary>
         BackgroundWorker eventWorker;
 
         /// <summary>
-        /// 后台更新用户重置线程
+        /// Background update user reset thread
         /// </summary>
         BackgroundWorker updateMoneyWorker;
-        
+
         /// <summary>
-        /// 后台释放内存的线程
+        /// Background release the memory of the thread
         /// </summary>
         BackgroundWorker releaseMemoryWorker;
 
         /// <summary>
-        /// 后台加载礼品码的线程
+        /// The thread that loads the gift code in the background
         /// </summary>
         BackgroundWorker updateLiPinMaWorker;
 
         /// <summary>
-        /// 后台加载预先分配名字的线程
+        /// The background loads the preallocated name of the thread
         /// </summary>
         BackgroundWorker updatePreNamesWorker;
 
         /// <summary>
-        /// 后台进行排行榜排序的线程
+        /// The sort of thread in the background
         /// </summary>
         BackgroundWorker updatePaiHangWorker;
 
         /// <summary>
-        /// 写DB日志线程
+        /// Write the DB log thread
         /// </summary>
         BackgroundWorker dbWriterWorker;
 
         /// <summary>
-        /// 扫描新邮件线程
+        /// Scan new mail threads
         /// </summary>
         BackgroundWorker updateLastMailWorker;
 
         /// <summary>
-        /// 主调度线程,这个线程一直处于循环状态，不断的处理各种逻辑判断,相当于原来的主界面线程
+        /// The main scheduling thread, the thread has been in a circular state, continue to deal with a variety of logical judgments, the equivalent of the original main interface thread
         /// </summary>
         BackgroundWorker MainDispatcherWorker;
 
         /// <summary>
-        /// 上次释放内存的执行时间
+        /// The last time the memory was released
         /// </summary>
         long LastReleaseMemoryTicks = DateTime.Now.Ticks / 10000;
 
         /// <summary>
-        /// 是否是追加礼品码
+        /// Whether it is an additional gift code
         /// </summary>
         private bool toAppendLiPinMa = false;
 
         /// <summary>
-        /// 执行后台线程对象
+        /// Execute the background thread object
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ExecuteBackgroundWorkers(object sender, EventArgs e)
         {
-            //后台工作者事件难道需要不断的激发?
+            //Is it necessary for the background workers to keep up?
             if (!eventWorker.IsBusy) { eventWorker.RunWorkerAsync(); }
             if (!updateMoneyWorker.IsBusy) { updateMoneyWorker.RunWorkerAsync(); }
             if (!updatePaiHangWorker.IsBusy) { updatePaiHangWorker.RunWorkerAsync(); }
             if (!dbWriterWorker.IsBusy) { dbWriterWorker.RunWorkerAsync(); }
             if (!updateLastMailWorker.IsBusy) { updateLastMailWorker.RunWorkerAsync(); }
 
-            //上次释放内存的执行时间(1分钟调用一次)
+            //Last release of memory execution time (1 minute call once)
             long nowTicks = DateTime.Now.Ticks / 10000;
             if (nowTicks - LastReleaseMemoryTicks >= (1 * 60 * 1000))
             {
@@ -981,12 +981,12 @@ namespace GameDBServer
             }
         }
 
-        //后台处理写日志工作事件
+        //Background processing write log work events
         private void eventWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                // 将事件写入日志
+                // Write the event to the log
                 while (GameDBManager.SystemServerSQLEvents.WriteEvent())
                 {
                     ;
@@ -996,39 +996,39 @@ namespace GameDBServer
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "eventWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "eventWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台处理刷新用户充值的事件
+        //Background processing refresh the user recharge the event
         private void updateMoneyWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                //更新用户充值的元宝数据
+                //Update the user to recharge the ingot data
                 UserMoneyMgr.UpdateUsersMoney(_DBManger);
 
-                //扫描充值流水生成二进制日志
+                //Scanning the recharge flow to generate binary logs
                 UserMoneyMgr.ScanInputLogToDBLog(_DBManger);
 
-                //扫描GM命令流水发送到客户端
+                //Scan the GM command flow to the client
                 ChatMsgManager.ScanGMMsgToGameServer(_DBManger);
             }
             catch (Exception ex)
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "updateMoneyWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "updateMoneyWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台处理释放内存的事件
+        //The background handles the release of memory events
         private void releaseMemoryWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -1036,27 +1036,27 @@ namespace GameDBServer
                 int ticksSlot = (30 * 60 * 1000);
                 //int ticksSlot = (60 * 1000);
 
-                //释放用户信息(超过30分钟无访问)
+                //Release user information (no more than 30 minutes)
                 _DBManger.dbUserMgr.ReleaseIdleDBUserInfos(ticksSlot);
 
-                //释放角色信息(超过30分钟无访问)
+                //Release role information (no more than 30 minutes)
                 _DBManger.DBRoleMgr.ReleaseIdleDBRoleInfos(ticksSlot);
 
-                //清除使用过的名字
+                //Clear the used name
                 PreNamesManager.ClearUsedPreNames();
             }
             catch (Exception ex)
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "releaseMemoryWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "releaseMemoryWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台从文件加载礼品码的事件
+        //The background loads the gift code from the file
         private void updateLiPinMaWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -1067,14 +1067,14 @@ namespace GameDBServer
             {
                 ////System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "updateLiPinMaWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "updateLiPinMaWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台从文件加载预先分配名字的事件
+        //The background loads events from the file that preallocated names
         private void updatePreNamesWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -1085,49 +1085,49 @@ namespace GameDBServer
             {
                 ////System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "updatePreNamesWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "updatePreNamesWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台进行排行榜排序的事件
+        //Background sorting events
         private void updatePaiHangWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                //处理排行榜
-                PaiHangManager.ProcessPaiHang(_DBManger, false);  
-              
-                //在线用户数记录
+                //Deal with charts
+                PaiHangManager.ProcessPaiHang(_DBManger, false);
+
+                //Number of online users
                 OnlineUserNumMgr.WriteTotalOnlineNumToDB(_DBManger);
 
-                //将当前的在线人数写入通知统计服务器
+                //Writes the current number of online people to the notification statistics server
                 OnlineUserNumMgr.NotifyTotalOnlineNumToServer(_DBManger);
 
-                //重新计算帮会的人数
+                //Recalculate the number of gangs
                 BangHuiNumLevelMgr.RecalcBangHuiNumLevel(_DBManger);
 
-                //处理解散帮会
+                //Deal with dissolution gang
                 BangHuiDestroyMgr.ProcessDestroyBangHui(_DBManger);
 
-                //每周日凌晨清空扬州城中的税收
+                //Every morning morning clear Yangzhou city tax
                 GameDBManager.BangHuiLingDiMgr.ProcessClearYangZhouTotalTax(_DBManger);
             }
             catch (Exception ex)
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "updatePaiHangWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "updatePaiHangWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
         /// <summary>
-        /// DB写日志线程后台工作函数
+        /// DB write log thread background work function
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1141,48 +1141,48 @@ namespace GameDBServer
                     return;
                 }
 
-                //最近一次写数据库日志的时间
+                //The last time to write the database log
                 LastWriteDBLogTicks = ticks;
 
-                //将缓存中的日志写入文件中
+                //Write the log in the cache to the file
                 //bool ret = GameDBManager.DBEventsWriter.WriteToHardDisk();
 
                 //if (!ret)
                 //{
-                //    LogManager.WriteLog(LogTypes.Error, string.Format("将缓存中的DB日志写入文件中时发生错误:{0}", GameDBManager.DBEventsWriter.LastError));
+                //    LogManager.WriteLog(LogTypes.Error, string.Format("An error occurred while writing the DB log in the cache to the file:{0}", GameDBManager.DBEventsWriter.LastError));
                 //}
             }
             catch (Exception ex)
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "dbWriterWorker_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "dbWriterWorker_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        //后台扫描新邮件
+        //Scanning new messages in the background
         private void updateLastMail_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                //扫描新邮件
+                //Scan new messages
                 UserMailManager.ScanLastMails(_DBManger);
             }
             catch (Exception ex)
             {
                 //System.Windows.Application.Current.Dispatcher.Invoke((MethodInvoker)delegate
                 //{
-                    // 格式化异常错误信息
-                    DataHelper.WriteFormatExceptionLog(ex, "updateLastMail_DoWork", false);
+                // Formatting exception error message
+                DataHelper.WriteFormatExceptionLog(ex, "updateLastMail_DoWork", false);
                     //throw ex;
                 //});
             }
         }
 
-        #endregion 线程部分
+        #endregion Thread part
 
         /// <summary>
         /// To determine whether you can exit

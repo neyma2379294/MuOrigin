@@ -23,7 +23,7 @@ namespace GameDBServer.Server
         }
 
         /// <summary>
-        /// 向GameServer发送指令
+        /// Send instructions to GameServer
         /// </summary>
         public void sendCmd(int cmdId, string cmdData)
         {
@@ -31,7 +31,7 @@ namespace GameDBServer.Server
         }
 
         /// <summary>
-        /// 向GameServer发送指令
+        /// Send instructions to GameServer
         /// </summary>
         public void sendCmd<T>(int cmdId, T cmdData)
         {
