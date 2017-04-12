@@ -1,0 +1,7 @@
+应用程序出现了异常[1]:
+Load xml file at startup: AppConfig.xml failed
+
+ 额外信息: CurrentDomain_UnhandledException
+    em GameDBServer.Program.InitServer() na C:\Users\luiz\Desktop\DEV\Mu Origin Dev\mu_server51\GameDBServer\GameDBServer\Program.cs:linha 702
+   em GameDBServer.Program.OnStartServer() na C:\Users\luiz\Desktop\DEV\Mu Origin Dev\mu_server51\GameDBServer\GameDBServer\Program.cs:linha 270
+   em GameDBServer.Program.Main(String[] args) na C:\Users\luiz\Desktop\DEV\Mu Origin Dev\mu_server51\GameDBServer\GameDBServer\Program.cs:linha 210

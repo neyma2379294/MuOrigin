@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "GameServer\GameServer.csproj", "{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		测试|x64 = 测试|x64
+		测试|x86 = 测试|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Debug|x64.ActiveCfg = Debug|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Debug|x64.Build.0 = Debug|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Debug|x86.ActiveCfg = Debug|x86
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Debug|x86.Build.0 = Debug|x86
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Release|x64.ActiveCfg = Release|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Release|x64.Build.0 = Release|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Release|x86.ActiveCfg = Release|x86
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.Release|x86.Build.0 = Release|x86
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.测试|x64.ActiveCfg = 测试|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.测试|x64.Build.0 = 测试|x64
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.测试|x86.ActiveCfg = 测试|x86
+		{F05B7877-D5BF-44F7-9190-D80E0C4A14AF}.测试|x86.Build.0 = 测试|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

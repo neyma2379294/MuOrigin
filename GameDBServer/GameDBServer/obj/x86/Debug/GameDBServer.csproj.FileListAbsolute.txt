@@ -1,0 +1,8 @@
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\bin\Debug\GameDBServer.exe
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\bin\Debug\GameDBServer.pdb
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\bin\Debug\MySQLDriverCS.dll
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\bin\Debug\protobuf-net.dll
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\bin\Debug\zlib.net.dll
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\obj\x86\Debug\GameDBServer.csprojResolveAssemblyReference.cache
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\obj\x86\Debug\GameDBServer.exe
+E:\tmsk\mu_server51\GameDBServer\GameDBServer\obj\x86\Debug\GameDBServer.pdb

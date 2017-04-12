@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D49A3FBD-CB43-4389-9ADE-5564CBF3C737}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameDBServer</RootNamespace>
+    <AssemblyName>GameDBServer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/GameDBServer/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Windows</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Windows</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySQLDriverCS, Version=3.0.1735.36021, Culture=neutral, PublicKeyToken=172f94dfb0faf263, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MySQLDriverCS.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net, Version=1.0.0.282, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GameServer\GameServer\dlls\protobuf-net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="zlib.net, Version=1.0.3.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\GameServer\GameServer\dlls\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Executor\ScheduleExecutor.cs" />
+    <Compile Include="Core\GameEvent\EventObject.cs" />
+    <Compile Include="Core\GameEvent\EventObjectImpl\PlayerLoginEventObject.cs" />
+    <Compile Include="Core\GameEvent\EventObjectImpl\PlayerLogoutEventObject.cs" />
+    <Compile Include="Core\GameEvent\EventSource.cs" />
+    <Compile Include="Core\GameEvent\EventType.cs" />
+    <Compile Include="Core\GameEvent\GlobalEventSource.cs" />
+    <Compile Include="Core\GameEvent\IEventListener.cs" />
+    <Compile Include="Core\PorcessCmdMoniter.cs" />
+    <Compile Include="Core\TimeUtil.cs" />
+    <Compile Include="Data\AccountActiveData.cs" />
+    <Compile Include="Data\AwardsItemData.cs" />
+    <Compile Include="Data\BaiTanLogItemData.cs" />
+    <Compile Include="Data\BangGongHistData.cs" />
+    <Compile Include="Data\BangHuiBagData.cs" />
+    <Compile Include="Data\BangHuiDetailData.cs" />
+    <Compile Include="Data\BangHuiItemData.cs" />
+    <Compile Include="Data\BangHuiJunQiItemData.cs" />
+    <Compile Include="Data\BangHuiLingDiInfoData.cs" />
+    <Compile Include="Data\BangHuiLingDiItemData.cs" />
+    <Compile Include="Data\BangHuiListData.cs" />
+    <Compile Include="Data\BangHuiMemberData.cs" />
+    <Compile Include="Data\BangQiInfoData.cs" />
+    <Compile Include="Data\BufferData.cs" />
+    <Compile Include="Data\BulletinMsgData.cs" />
+    <Compile Include="Data\DailyJingMaiData.cs" />
+    <Compile Include="Data\DailyTaskData.cs" />
+    <Compile Include="Data\DJPointData.cs" />
+    <Compile Include="Data\DJPointsData.cs" />
+    <Compile Include="Data\DJRoleInfoData.cs" />
+    <Compile Include="Data\FriendData.cs" />
+    <Compile Include="Data\FuBenData.cs" />
+    <Compile Include="Data\FuBenHistData.cs" />
+    <Compile Include="Data\GoodsData.cs" />
+    <Compile Include="Data\GoodsLimitData.cs" />
+    <Compile Include="Data\HeFuPKKingData.cs" />
+    <Compile Include="Data\HorseData.cs" />
+    <Compile Include="Data\HuodongPaiHangData.cs" />
+    <Compile Include="Data\JieriCZKingData.cs" />
+    <Compile Include="Data\JingJiBeChallengeData.cs" />
+    <Compile Include="Data\JingJiChallengeResultData.cs" />
+    <Compile Include="Data\JingJiSaveData.cs" />
+    <Compile Include="Data\JingJiChallengeInfoData.cs" />
+    <Compile Include="Data\LayerRewardData.cs" />
+    <Compile Include="Data\NewZoneActiveData.cs" />
+    <Compile Include="Data\NewZoneUplevelData.cs" />
+    <Compile Include="Data\NewZoneUpLevelItemData.cs" />
+    <Compile Include="Data\OldResourceInfo.cs" />
+    <Compile Include="Data\PlayerJingJiData.cs" />
+    <Compile Include="Data\JingMaiData.cs" />
+    <Compile Include="Data\KaiFuOnlineAwardData.cs" />
+    <Compile Include="Data\LineData.cs" />
+    <Compile Include="Data\MailData.cs" />
+    <Compile Include="Data\MailGoodsData.cs" />
+    <Compile Include="Data\OldTaskData.cs" />
+    <Compile Include="Data\PaiHangData.cs" />
+    <Compile Include="Data\PaiHangItemData.cs" />
+    <Compile Include="Data\PetData.cs" />
+    <Compile Include="Data\PlayerJingJiSkillData.cs" />
+    <Compile Include="Data\PlayerWanMoTaRankingData.cs" />
+    <Compile Include="Data\PlayerWingRankingData.cs" />
+    <Compile Include="Data\PortableBagData.cs" />
+    <Compile Include="Data\PushMessageData.cs" />
+    <Compile Include="Data\QizhenGeBuItemData.cs" />
+    <Compile Include="Data\PlayerJingJiEquipData.cs" />
+    <Compile Include="Data\PlayerJingJiMiniData.cs" />
+    <Compile Include="Data\PlayerJingJiRankingData.cs" />
+    <Compile Include="Data\RoleDailyData.cs" />
+    <Compile Include="Data\RoleData4Selector.cs" />
+    <Compile Include="Data\RoleDataEx.cs" />
+    <Compile Include="Data\RoleParamsData.cs" />
+    <Compile Include="Data\SaleGoodsData.cs" />
+    <Compile Include="Data\SaleRoleData.cs" />
+    <Compile Include="Data\SearchRoleData.cs" />
+    <Compile Include="Data\ServerListData.cs" />
+    <Compile Include="Data\SkillData.cs" />
+    <Compile Include="Data\TaskAwardsData.cs" />
+    <Compile Include="Data\TaskData.cs" />
+    <Compile Include="Data\UpdateGoodsArgs.cs" />
+    <Compile Include="Data\WingData.cs" />
+    <Compile Include="Data\YaBiaoData.cs" />
+    <Compile Include="Data\HuoDongPaiHang.cs" />
+    <Compile Include="Data\InputKingPaiHangData.cs" />
+    <Compile Include="Data\VipDailyData.cs" />
+    <Compile Include="Data\YangGongBKDailyJiFenData.cs" />
+    <Compile Include="Data\ShengXiaoGuessHisotry.cs" />
+    <Compile Include="Data\QiangGouBuyItemData.cs" />
+    <Compile Include="Data\QiangGouItemData.cs" />
+    <Compile Include="Data\BangHuiMiniData.cs" />
+    <Compile Include="Data\ZaJinDanAndYueDuChouJiangData.cs" />
+    <Compile Include="Data\ZaJinDanHisotry.cs" />
+    <Compile Include="Data\ZhanMengShiJianData.cs" />
+    <Compile Include="DB\DBController\BaiTanLogDBController.cs" />
+    <Compile Include="DB\DBController\DBController.cs" />
+    <Compile Include="DB\DBConnections.cs" />
+    <Compile Include="DB\DBController\JingJiChangDBController.cs" />
+    <Compile Include="DB\DBController\JingJiChangZhaoBaoDBController.cs" />
+    <Compile Include="DB\DBController\WanMoTaDBController.cs" />
+    <Compile Include="DB\DBController\WingPaiHangDBController.cs" />
+    <Compile Include="DB\DBManager.cs" />
+    <Compile Include="DB\DBQuery.cs" />
+    <Compile Include="DB\DBRoleInfo.cs" />
+    <Compile Include="DB\DBMappingAttribute.cs" />
+    <Compile Include="DB\DBController\ZhanMengShiJianDBController.cs" />
+    <Compile Include="DB\DBController\DBUserActiveInfo.cs" />
+    <Compile Include="Logic\BaiTan\BaiTanManager.cs" />
+    <Compile Include="Logic\BangHuiDestroyMgr.cs" />
+    <Compile Include="Logic\CFirstChargeMgr.cs" />
+    <Compile Include="Logic\CGetOldResourceManager.cs" />
+    <Compile Include="Logic\DayRechargeRankManager.cs" />
+    <Compile Include="Logic\GlobalServiceManager.cs" />
+    <Compile Include="Logic\JingJiChangManager.cs" />
+    <Compile Include="Logic\LiPinMaParse.cs" />
+    <Compile Include="Logic\NewZoneActiveMgr.cs" />
+    <Compile Include="Logic\RechargeRepayActiveMgr.cs" />
+    <Compile Include="Logic\WanMoTa\WanMoTaManager.cs" />
+    <Compile Include="Logic\Wing\WingPaiHangManager.cs" />
+    <Compile Include="Logic\ZhanMengShiJianManager.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="DB\DBUserInfo.cs" />
+    <Compile Include="DB\DBUserMgr.cs" />
+    <Compile Include="DB\DBWriter.cs" />
+    <Compile Include="Logic\BanChatManager.cs" />
+    <Compile Include="Logic\BangHuiJunQiManager.cs" />
+    <Compile Include="Logic\BangHuiLingDiManager.cs" />
+    <Compile Include="Logic\BangHuiNumLevelMgr.cs" />
+    <Compile Include="Logic\BanManager.cs" />
+    <Compile Include="Logic\BulletinMsgManager.cs" />
+    <Compile Include="Logic\ChatMsgManager.cs" />
+    <Compile Include="Logic\HuangDiTeQuanMgr.cs" />
+    <Compile Include="Logic\OnlineUserNumMgr.cs" />
+    <Compile Include="Logic\PaiHangManager.cs" />
+    <Compile Include="Logic\DJPointsHotList.cs" />
+    <Compile Include="Logic\Enumeration.cs" />
+    <Compile Include="Logic\FuBenHistManager.cs" />
+    <Compile Include="Logic\FuBenSeqIDMgr.cs" />
+    <Compile Include="Logic\GameConfig.cs" />
+    <Compile Include="Logic\GameDBManager.cs" />
+    <Compile Include="Logic\Global.cs" />
+    <Compile Include="Logic\LineItem.cs" />
+    <Compile Include="Logic\LineManager.cs" />
+    <Compile Include="Logic\LiPinMaManager.cs" />
+    <Compile Include="Logic\MyWeakReference.cs" />
+    <Compile Include="Logic\PreNamesManager.cs" />
+    <Compile Include="Logic\QiZhenGeBuManager.cs" />
+    <Compile Include="Logic\RoleOnlineManager.cs" />
+    <Compile Include="Logic\ServerEvents.cs" />
+    <Compile Include="Logic\UnhandedException.cs" />
+    <Compile Include="Logic\UserMailMgr.cs" />
+    <Compile Include="Logic\UserMoneyMgr.cs" />
+    <Compile Include="Logic\UserOnlineManager.cs" />
+    <Compile Include="Protocol\TCPConsts.cs" />
+    <Compile Include="Protocol\TCPInPacket.cs" />
+    <Compile Include="Protocol\TCPInPacketPool.cs" />
+    <Compile Include="Protocol\TCPOutPacket.cs" />
+    <Compile Include="Protocol\TCPOutPacketPool.cs" />
+    <Compile Include="Server\CmdProcessor\BaiTanLogAddCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\BaiTanLogDetailCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\CmdRegisterTriggerManager.cs" />
+    <Compile Include="Server\CmdProcessor\GetWanMoTaoDetailCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiChallengeEndCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiCreateDataCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiGetChallengeDataCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiGetDataCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiGetRankingAndRewardTimeCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiGetChallengeInfoDataCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiRemoveCDCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiRequestChallengeCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiSaveDataCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\JingJiUpdateNextRewardTimeCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\ModifyWanMoTaCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\ZhanMengBuildGetBufferCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\ZhanMengBuildUpLevelCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\ZhanMengShiJianCmdProcessor.cs" />
+    <Compile Include="Server\CmdProcessor\ZhanMengShiJianDetailCmdProcessor.cs" />
+    <Compile Include="Server\GameServerClient.cs" />
+    <Compile Include="Server\CmdProcessor\ICmdProcesser.cs" />
+    <Compile Include="Server\TCPCmdDispatcher.cs" />
+    <Compile Include="Server\TCPCmdHandler.cs" />
+    <Compile Include="Server\TCPManager.cs" />
+    <Compile Include="TCP\BufferManager.cs" />
+    <Compile Include="TCP\SocketAsyncEventArgsPool.cs" />
+    <Compile Include="TCP\SocketHelper.cs" />
+    <Compile Include="TCP\SocketListener.cs" />
+    <Compile Include="Tools\AesHelper.cs" />
+    <Compile Include="Tools\CRC32.cs" />
+    <Compile Include="Tools\DataHelper.cs" />
+    <Compile Include="Tools\LogManager.cs" />
+    <Compile Include="Tools\RC4Helper.cs" />
+    <Compile Include="Tools\SHA1Helper.cs" />
+    <Compile Include="Tools\StringEncrypt.cs" />
+    <Compile Include="DB\DBRoleMgr.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
